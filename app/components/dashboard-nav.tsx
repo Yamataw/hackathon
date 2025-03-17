@@ -22,14 +22,14 @@ export function DashboardNav({ setIsOpen }: NavProps) {
   }
 
   return (
-      <div className="w-[60px] border-r bg-background/80 backdrop-blur-sm flex flex-col items-center">
+      <div className="w-[60px] bg-primary backdrop-blur-sm flex flex-col items-center">
         <ScrollArea className="h-full w-full">
           <TooltipProvider delayDuration={0}>
             <div className="flex flex-col items-center py-4 space-y-4">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "dashboard" ? "secondary" : "ghost"}
+                      variant={activeItem === "dashboard" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("dashboard")}
@@ -47,7 +47,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "trips" ? "secondary" : "ghost"}
+                      variant={activeItem === "trips" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("trips")}
@@ -65,7 +65,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "add-trip" ? "secondary" : "ghost"}
+                      variant={activeItem === "add-trip" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("add-trip")}
@@ -83,7 +83,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "schedule" ? "secondary" : "ghost"}
+                      variant={activeItem === "schedule" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("schedule")}
@@ -98,7 +98,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "achievements" ? "secondary" : "ghost"}
+                      variant={activeItem === "achievements" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("achievements")}
@@ -113,7 +113,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "focus" ? "secondary" : "ghost"}
+                      variant={activeItem === "focus" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("focus")}
@@ -128,7 +128,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "relaxation" ? "secondary" : "ghost"}
+                      variant={activeItem === "relaxation" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("relaxation")}
@@ -143,7 +143,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "stats" ? "secondary" : "ghost"}
+                      variant={activeItem === "stats" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("stats")}
@@ -158,7 +158,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "team" ? "secondary" : "ghost"}
+                      variant={activeItem === "team" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("team")}
@@ -173,7 +173,7 @@ export function DashboardNav({ setIsOpen }: NavProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                      variant={activeItem === "settings" ? "secondary" : "ghost"}
+                      variant={activeItem === "settings" ? "accent" : "ghost"}
                       size="icon"
                       className="h-8 w-8"
                       onClick={() => handleItemClick("settings")}

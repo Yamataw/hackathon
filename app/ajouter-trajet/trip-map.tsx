@@ -105,15 +105,6 @@ interface TripMapProps {
 }
 
 export function TripMap({ segments }: TripMapProps) {
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    return <div className="h-full w-full flex items-center justify-center bg-gray-100">Chargement de la carte...</div>
-  }
 
   // Déterminer les coordonnées de départ et d'arrivée pour centrer la carte
   const allCities = segments.flatMap((segment) => [segment.from, segment.to])

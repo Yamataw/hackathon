@@ -16,7 +16,7 @@ export default function Dashboard() {
         <DashboardHeader />
         <div className="flex flex-1">
           <DashboardNav />
-          <main className="flex-1 p-6 md:p-8">
+          <main className="p-6 md:p-8 bg-background flex-1">
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <h1 className="text-3xl font-bold tracking-tight">Bienvenue, Thomas</h1>
@@ -95,7 +95,7 @@ export default function Dashboard() {
                       <CardDescription>Planifiez et optimisez vos prochains voyages.</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <div className="rounded-lg border p-4">
+                      <div className="rounded-lg p-4">
                         <div className="flex items-center justify-between mb-4">
                           <h3 className="font-medium">Voyages à Venir</h3>
                           <Button size="sm" asChild>

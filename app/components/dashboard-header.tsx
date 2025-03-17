@@ -13,7 +13,7 @@ export function DashboardHeader() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-      <header className="sticky top-0 z-10 flex h-12 items-center gap-2 border-b bg-background px-2 md:px-4">
+      <header className="sticky top-0 z-10 flex h-12 items-center gap-2 bg-primary min-h-4 px-2 md:px-4">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="h-7 w-7 md:hidden">
@@ -46,14 +46,14 @@ export function DashboardHeader() {
           </form>
         </div>
         <div className="ml-auto flex items-center gap-1">
-          <Button variant="outline" size="icon" className="relative h-7 w-7">
+          <Button variant="ghost" size="icon" className="relative h-7 w-7">
             <Bell className="h-3.5 w-3.5" />
-            <span className="absolute -right-1 -top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-primary text-[8px] text-primary-foreground">
+            <span className="absolute -right-1 -top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-accent text-[8px] text-accent-foreground">
             3
           </span>
             <span className="sr-only">Notifications</span>
           </Button>
-          <Button variant="outline" size="icon" className="h-7 w-7">
+          <Button variant="ghost" size="icon" className="h-7 w-7">
             <Settings className="h-3.5 w-3.5" />
             <span className="sr-only">Paramètres</span>
           </Button>

@@ -24,7 +24,7 @@ export function StressPreventionSection() {
             <Progress value={25} className="h-2" />
           </div>
 
-          <div className="rounded-lg border p-3">
+          <div className="rounded-lg p-3">
             <h4 className="text-sm font-medium flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-blue-500" />
               Recommandation Personnalisée
@@ -38,7 +38,7 @@ export function StressPreventionSection() {
             </Button>
           </div>
 
-          <div className="rounded-lg border p-3">
+          <div className="rounded-lg p-3">
             <h4 className="text-sm font-medium flex items-center gap-2">
               <Clock className="h-4 w-4 text-amber-500" />
               Analyse Hebdomadaire des Voyages
@@ -63,7 +63,7 @@ export function StressPreventionSection() {
           <CardDescription>Outils de relaxation adaptés à votre voyage</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="rounded-lg border p-3">
+          <div className="rounded-lg p-3">
             <h4 className="text-sm font-medium">Ambiances Sonores</h4>
             <div className="mt-3 grid grid-cols-3 gap-2">
               <Button variant="outline" size="sm" className="h-auto flex flex-col items-center p-2">
@@ -81,7 +81,7 @@ export function StressPreventionSection() {
             </div>
           </div>
 
-          <div className="rounded-lg border p-3">
+          <div className="rounded-lg p-3">
             <h4 className="text-sm font-medium">Respiration Guidée</h4>
             <div className="mt-3 flex justify-center">
               <div className="relative h-24 w-24 rounded-full border-4 border-blue-200 flex items-center justify-center">
@@ -115,7 +115,7 @@ export function StressPreventionSection() {
           <CardDescription>Environnement sans distraction pour un voyage productif</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="rounded-lg border p-3">
+          <div className="rounded-lg p-3">
             <h4 className="text-sm font-medium">Minuteur de Concentration</h4>
             <div className="mt-3 flex justify-center">
               <div className="text-center">
@@ -131,14 +131,14 @@ export function StressPreventionSection() {
             </div>
           </div>
 
-          <div className="rounded-lg border p-3">
+          <div className="rounded-lg p-3">
             <h4 className="text-sm font-medium">Niveau de Bruit Ambiant</h4>
             <div className="mt-3">
               <Slider defaultValue={[30]} max={100} step={1} />
             </div>
           </div>
 
-          <div className="rounded-lg border p-3">
+          <div className="rounded-lg p-3">
             <h4 className="text-sm font-medium flex items-center gap-2">
               <Heart className="h-4 w-4 text-red-500" />
               Suggestions de Lecture Intelligentes
