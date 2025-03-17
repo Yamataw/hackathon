@@ -7,6 +7,8 @@ import { DashboardHeader } from "./components/dashboard-header"
 import { DashboardNav } from "./components/dashboard-nav"
 import { GamificationSection } from "./components/gamification-section"
 import { StressPreventionSection } from "./components/stress-prevention-section"
+import Link from "next/link"
+import { Train, Car } from "lucide-react"
 
 export default function Dashboard() {
   return (
@@ -60,11 +62,11 @@ export default function Dashboard() {
                     <CardTitle className="text-sm font-medium">Prochain Voyage</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">Paris → Lyon</div>
+                    <div className="text-2xl font-bold">Paris → Nantes</div>
                     <p className="text-xs text-muted-foreground">Demain, 9h15</p>
                     <div className="mt-3 flex items-center gap-2">
                       <Badge variant="outline" className="bg-blue-50">
-                        TGV
+                        TGV INOUI
                       </Badge>
                       <Badge variant="outline" className="bg-green-50">
                         Optimisé
@@ -76,7 +78,7 @@ export default function Dashboard() {
 
               <Tabs defaultValue="gamification" className="space-y-4">
                 <TabsList>
-                  <TabsTrigger value="gamification">Challenges</TabsTrigger>
+                  <TabsTrigger value="gamification">Gamification</TabsTrigger>
                   <TabsTrigger value="stress-prevention">Prévention du Stress</TabsTrigger>
                   <TabsTrigger value="travel-planner">Planificateur de Voyage</TabsTrigger>
                 </TabsList>
@@ -94,27 +96,59 @@ export default function Dashboard() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="rounded-lg border p-4">
-                        <h3 className="font-medium">Voyages à Venir</h3>
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="font-medium">Voyages à Venir</h3>
+                          <Button size="sm" asChild>
+                            <Link href="/ajouter-trajet">Ajouter un trajet</Link>
+                          </Button>
+                        </div>
                         <div className="mt-4 space-y-3">
                           <div className="flex items-center justify-between rounded-md bg-blue-50 p-3">
                             <div>
-                              <p className="font-medium">Paris → Lyon</p>
-                              <p className="text-sm text-muted-foreground">Demain, 9h15</p>
+                              <p className="font-medium">Paris → Nantes → La Rochelle</p>
+                              <div className="flex items-center text-sm text-muted-foreground mt-1">
+                                <Badge variant="outline" className="mr-2 bg-blue-50">
+                                <span className="flex items-center">
+                                  <Train className="h-3 w-3 mr-1" />
+                                  TGV INOUI
+                                </span>
+                                </Badge>
+                                <Badge variant="outline" className="bg-green-50">
+                                <span className="flex items-center">
+                                  <Car className="h-3 w-3 mr-1" />
+                                  Renault Zoé
+                                </span>
+                                </Badge>
+                              </div>
+                              <p className="text-sm text-muted-foreground mt-1">Demain, 9h15</p>
                             </div>
-                            <Button size="sm" variant="outline">
-                              Détails
+                            <Button size="sm" variant="outline" asChild>
+                              <Link href="/mes-trajets">Détails</Link>
                             </Button>
                           </div>
                           <div className="flex items-center justify-between rounded-md bg-blue-50 p-3">
                             <div>
-                              <p className="font-medium">Lyon → Marseille</p>
-                              <p className="text-sm text-muted-foreground">Vendredi, 14h30</p>
+                              <p className="font-medium">Bordeaux → Toulouse</p>
+                              <div className="flex items-center text-sm text-muted-foreground mt-1">
+                                <Badge variant="outline" className="bg-blue-50">
+                                <span className="flex items-center">
+                                  <Train className="h-3 w-3 mr-1" />
+                                  TGV OUIGO
+                                </span>
+                                </Badge>
+                              </div>
+                              <p className="text-sm text-muted-foreground mt-1">Vendredi, 14h30</p>
                             </div>
-                            <Button size="sm" variant="outline">
-                              Détails
+                            <Button size="sm" variant="outline" asChild>
+                              <Link href="/mes-trajets">Détails</Link>
                             </Button>
                           </div>
                         </div>
+                      </div>
+                      <div className="flex justify-center">
+                        <Button variant="outline" asChild>
+                          <Link href="/mes-trajets">Voir tous mes trajets</Link>
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>
