@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useState } from "react"
 import Link from "next/link"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 interface NavProps {
   setIsOpen?: (open: boolean) => void
@@ -21,122 +22,182 @@ export function DashboardNav({ setIsOpen }: NavProps) {
   }
 
   return (
-      <ScrollArea className="h-full py-4">
-        <div className="px-2 py-1">
-          <h2 className="mb-1 px-2 text-sm font-semibold tracking-tight">Navigation</h2>
-          <div className="space-y-1">
-            <Button
-                variant={activeItem === "dashboard" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("dashboard")}
-                asChild
-            >
-              <Link href="/">
-                <Home className="mr-1 h-3.5 w-3.5" />
-                Tableau de bord
-              </Link>
-            </Button>
-            <Button
-                variant={activeItem === "trips" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("trips")}
-                asChild
-            >
-              <Link href="/mes-trajets">
-                <Map className="mr-1 h-3.5 w-3.5" />
-                Mes Voyages
-              </Link>
-            </Button>
-            <Button
-                variant={activeItem === "add-trip" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("add-trip")}
-                asChild
-            >
-              <Link href="/ajouter-trajet">
-                <PlusCircle className="mr-1 h-3.5 w-3.5" />
-                Ajouter un Trajet
-              </Link>
-            </Button>
-            <Button
-                variant={activeItem === "schedule" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("schedule")}
-            >
-              <Calendar className="mr-1 h-3.5 w-3.5" />
-              Calendrier
-            </Button>
-            <Button
-                variant={activeItem === "achievements" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("achievements")}
-            >
-              <Award className="mr-1 h-3.5 w-3.5" />
-              Récompenses
-            </Button>
-          </div>
-        </div>
-        <div className="px-2 py-1">
-          <h2 className="mb-1 px-2 text-sm font-semibold tracking-tight">Bien-être</h2>
-          <div className="space-y-1">
-            <Button
-                variant={activeItem === "focus" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("focus")}
-            >
-              <Lightbulb className="mr-1 h-3.5 w-3.5" />
-              Mode Focus
-            </Button>
-            <Button
-                variant={activeItem === "relaxation" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("relaxation")}
-            >
-              <Clock className="mr-1 h-3.5 w-3.5" />
-              Espace Détente
-            </Button>
-            <Button
-                variant={activeItem === "stats" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("stats")}
-            >
-              <BarChart3 className="mr-1 h-3.5 w-3.5" />
-              Statistiques
-            </Button>
-          </div>
-        </div>
-        <div className="px-2 py-1">
-          <h2 className="mb-1 px-2 text-sm font-semibold tracking-tight">Social</h2>
-          <div className="space-y-1">
-            <Button
-                variant={activeItem === "team" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("team")}
-            >
-              <Users className="mr-1 h-3.5 w-3.5" />
-              Défis d'Équipe
-            </Button>
-            <Button
-                variant={activeItem === "settings" ? "secondary" : "ghost"}
-                size="sm"
-                className="w-full justify-start h-8 text-xs"
-                onClick={() => handleItemClick("settings")}
-            >
-              <Settings className="mr-1 h-3.5 w-3.5" />
-              Paramètres
-            </Button>
-          </div>
-        </div>
-      </ScrollArea>
+      <div className="w-[60px] border-r bg-background/80 backdrop-blur-sm">
+        <ScrollArea className="h-full">
+          <TooltipProvider delayDuration={0}>
+            <div className="flex flex-col items-center py-2">
+              <div className="space-y-1 w-full">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "dashboard" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("dashboard")}
+                        asChild
+                    >
+                      <Link href="/">
+                        <Home className="h-4 w-4" />
+                        <span className="sr-only">Tableau de bord</span>
+                      </Link>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Tableau de bord</TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "trips" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("trips")}
+                        asChild
+                    >
+                      <Link href="/mes-trajets">
+                        <Map className="h-4 w-4" />
+                        <span className="sr-only">Mes Voyages</span>
+                      </Link>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Mes Voyages</TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "add-trip" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("add-trip")}
+                        asChild
+                    >
+                      <Link href="/ajouter-trajet">
+                        <PlusCircle className="h-4 w-4" />
+                        <span className="sr-only">Ajouter un Trajet</span>
+                      </Link>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Ajouter un Trajet</TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "schedule" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("schedule")}
+                    >
+                      <Calendar className="h-4 w-4" />
+                      <span className="sr-only">Calendrier</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Calendrier</TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "achievements" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("achievements")}
+                    >
+                      <Award className="h-4 w-4" />
+                      <span className="sr-only">Récompenses</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Récompenses</TooltipContent>
+                </Tooltip>
+              </div>
+
+              <div className="my-2 w-10 border-t border-border" />
+
+              <div className="space-y-1 w-full">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "focus" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("focus")}
+                    >
+                      <Lightbulb className="h-4 w-4" />
+                      <span className="sr-only">Mode Focus</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Mode Focus</TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "relaxation" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("relaxation")}
+                    >
+                      <Clock className="h-4 w-4" />
+                      <span className="sr-only">Espace Détente</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Espace Détente</TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "stats" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("stats")}
+                    >
+                      <BarChart3 className="h-4 w-4" />
+                      <span className="sr-only">Statistiques</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Statistiques</TooltipContent>
+                </Tooltip>
+              </div>
+
+              <div className="my-2 w-10 border-t border-border" />
+
+              <div className="space-y-1 w-full">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "team" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("team")}
+                    >
+                      <Users className="h-4 w-4" />
+                      <span className="sr-only">Défis d'Équipe</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Défis d'Équipe</TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                        variant={activeItem === "settings" ? "secondary" : "ghost"}
+                        size="icon"
+                        className="h-9 w-9 mx-auto"
+                        onClick={() => handleItemClick("settings")}
+                    >
+                      <Settings className="h-4 w-4" />
+                      <span className="sr-only">Paramètres</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Paramètres</TooltipContent>
+                </Tooltip>
+              </div>
+            </div>
+          </TooltipProvider>
+        </ScrollArea>
+      </div>
   )
 }
 

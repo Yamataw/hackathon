@@ -13,56 +13,56 @@ export function DashboardHeader() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="md:hidden">
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">Basculer le menu de navigation</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-72 sm:max-w-none">
-          <DashboardNav setIsOpen={setIsOpen} />
-        </SheetContent>
-      </Sheet>
-      <div className="flex items-center gap-2">
-        <Link href="/">
-          <img src="/placeholder.svg?height=32&width=32" alt="SNCF SmartMove Logo" className="h-8 w-8" />
-        </Link>
-        <Link href="/" className="font-bold text-lg hidden md:inline-block">
-          SNCF SmartMove
-        </Link>
-      </div>
-      <div className="flex-1 md:grow-0 md:w-[200px] lg:w-[300px]">
-        <form>
-          <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Rechercher..."
-              className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[300px]"
-            />
-          </div>
-        </form>
-      </div>
-      <div className="ml-auto flex items-center gap-4">
-        <Button variant="outline" size="icon" className="relative">
-          <Bell className="h-5 w-5" />
-          <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
+      <header className="sticky top-0 z-10 flex h-12 items-center gap-2 border-b bg-background px-2 md:px-4">
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="h-7 w-7 md:hidden">
+              <Menu className="h-4 w-4" />
+              <span className="sr-only">Basculer le menu de navigation</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[60px] p-0 sm:max-w-none">
+            <DashboardNav setIsOpen={setIsOpen} />
+          </SheetContent>
+        </Sheet>
+        <div className="flex items-center gap-2">
+          <Link href="/">
+            <img src="/placeholder.svg?height=24&width=24" alt="SNCF SmartMove Logo" className="h-6 w-6" />
+          </Link>
+          <Link href="/" className="font-bold text-xs hidden md:inline-block">
+            SNCF SmartMove
+          </Link>
+        </div>
+        <div className="flex-1 md:grow-0 md:w-[180px] lg:w-[240px]">
+          <form>
+            <div className="relative">
+              <Search className="absolute left-2 top-1.5 h-3.5 w-3.5 text-muted-foreground" />
+              <Input
+                  type="search"
+                  placeholder="Rechercher..."
+                  className="w-full rounded-md bg-background pl-7 md:w-[180px] lg:w-[240px] h-7 text-xs"
+              />
+            </div>
+          </form>
+        </div>
+        <div className="ml-auto flex items-center gap-1">
+          <Button variant="outline" size="icon" className="relative h-7 w-7">
+            <Bell className="h-3.5 w-3.5" />
+            <span className="absolute -right-1 -top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-primary text-[8px] text-primary-foreground">
             3
           </span>
-          <span className="sr-only">Notifications</span>
-        </Button>
-        <Button variant="outline" size="icon">
-          <Settings className="h-5 w-5" />
-          <span className="sr-only">Paramètres</span>
-        </Button>
-        <Avatar>
-          <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
-          <AvatarFallback>TM</AvatarFallback>
-        </Avatar>
-      </div>
-    </header>
+            <span className="sr-only">Notifications</span>
+          </Button>
+          <Button variant="outline" size="icon" className="h-7 w-7">
+            <Settings className="h-3.5 w-3.5" />
+            <span className="sr-only">Paramètres</span>
+          </Button>
+          <Avatar className="h-7 w-7">
+            <AvatarImage src="/placeholder.svg?height=28&width=28" alt="User" />
+            <AvatarFallback className="text-xs">TM</AvatarFallback>
+          </Avatar>
+        </div>
+      </header>
   )
 }
 
