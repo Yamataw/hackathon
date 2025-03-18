@@ -38,7 +38,7 @@ export function DashboardHeader() {
               <Input
                   type="search"
                   placeholder="Rechercher..."
-                  className="w-full rounded-md bg-background pl-7 md:w-[180px] lg:w-[240px] h-12 text-xs"
+                  className="w-full rounded-lg bg-background pl-7 md:w-[180px] lg:w-[240px] h-12 text-xs"
               />
             </div>
           </form>

@@ -386,7 +386,7 @@ export default function AjouterTrajet() {
               </div>
 
               <div className="md:col-span-2 space-y-6">
-                <Card className="h-[500px]">
+                <Card className="h-[500px] overflow-hidden">
                   <CardHeader>
                     <CardTitle>Carte du Trajet</CardTitle>
                     <CardDescription>Visualisez votre itinéraire</CardDescription>
