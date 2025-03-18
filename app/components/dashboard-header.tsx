@@ -27,9 +27,9 @@ export function DashboardHeader() {
         </Sheet>
         <div className="flex items-center gap-2">
           <Link href="/">
-            <img src="/placeholder.svg?height=24&width=24" alt="SNCF SmartMove Logo" className="h-6 w-6" />
+            <img src="/sncf.svg?height=24&width=24" alt="SNCF SmartMove Logo" className="h-6 w-6 object-contain" />
           </Link>
-          <Link href="/" className="font-bold text-xs hidden md:inline-block">
+          <Link href="/" className="font-bold text-secondary text-xs hidden md:inline-block">
             SNCF SmartMove
           </Link>
         </div>
