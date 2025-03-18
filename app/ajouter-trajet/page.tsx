@@ -166,7 +166,7 @@ export default function AjouterTrajet() {
         <DashboardHeader />
         <div className="flex flex-1">
           <DashboardNav />
-          <main className="flex-1 p-6 md:p-8">
+          <main className="flex-1 p-6 md:p-8 bg-background ">
             <div className="flex items-center mb-8">
               <Button variant="ghost" size="icon" className="mr-2" asChild>
                 <Link href="/">

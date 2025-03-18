@@ -69,7 +69,7 @@ export default function MesTrajets() {
         <DashboardHeader />
         <div className="flex flex-1">
           <DashboardNav />
-          <main className="flex-1 p-6 md:p-8">
+          <main className="flex-1 p-6 md:p-8 bg-background ">
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h1 className="text-3xl font-bold tracking-tight">Mes Trajets</h1>
