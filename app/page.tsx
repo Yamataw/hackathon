@@ -76,11 +76,11 @@ export default function Dashboard() {
                 </Card>
               </div>
 
-              <Tabs defaultValue="gamification" className="space-y-4">
+              <Tabs defaultValue="travel-planner" className="space-y-4">
                 <TabsList>
+                  <TabsTrigger value="travel-planner">Planificateur de Voyage</TabsTrigger>
                   <TabsTrigger value="gamification">Gamification</TabsTrigger>
                   <TabsTrigger value="stress-prevention">Prévention du Stress</TabsTrigger>
-                  <TabsTrigger value="travel-planner">Planificateur de Voyage</TabsTrigger>
                 </TabsList>
                 <TabsContent value="gamification" className="space-y-4">
                   <GamificationSection />
