@@ -1,0 +1,106 @@
+{
+  "trajets": [
+    {
+      "id": 4,
+      "nom": "Bordeaux → Toulouse → Pau",
+      "date": "25 mars 2025",
+      "segments": [
+        {
+          "type": "train",
+          "from": "Bordeaux",
+          "to": "Toulouse",
+          "time": "9h00 - 10h30",
+          "transport": "INTERCITÉS"
+        },
+        {
+          "type": "voiture",
+          "from": "Toulouse",
+          "to": "Pau",
+          "time": "11h00 - 13h15",
+          "transport": "Peugeot e-208"
+        }
+      ],
+      "distance": "312 km",
+      "duree": "4h15",
+      "co2": "14,2 kg",
+      "xp": 65,
+      "status": true
+    },
+    {
+      "id": 3,
+      "nom": "Bordeaux → Toulouse",
+      "date": "10 mars 2025",
+      "segments": [
+        {
+          "type": "train",
+          "from": "Bordeaux",
+          "to": "Toulouse",
+          "time": "9h00 - 10h30",
+          "transport": "INTERCITÉS"
+        }
+      ],
+      "distance": "250 km",
+      "duree": "1h30",
+      "co2": "8,5 kg",
+      "xp": 40,
+      "status": true
+    },
+    {
+      "id": 2,
+      "nom": "Bordeaux → Pau",
+      "date": "10 mars 2025",
+      "segments": [
+        {
+          "type": "voiture",
+          "from": "Bordeaux",
+          "to": "Pau",
+          "time": "9h00 - 11h15",
+          "transport": "Peugeot e-208"
+        }
+      ],
+      "distance": "200 km",
+      "duree": "2h15",
+      "co2": "9,2 kg",
+      "xp": 45,
+      "status": false
+    },
+    {
+      "id": 1,
+      "nom": "Bordeaux → Toulouse",
+      "date": "10 mars 2025",
+      "segments": [
+        {
+          "type": "voiture",
+          "from": "Bordeaux",
+          "to": "Toulouse",
+          "time": "9h00 - 10h30",
+          "transport": "INTERCITÉS"
+        }
+      ],
+      "distance": "250 km",
+      "duree": "1h30",
+      "co2": "8,5 kg",
+      "xp": 40,
+      "status": false
+    },
+    {
+      "id": 0,
+      "nom": "Bordeaux → Pau",
+      "date": "10 mars 2025",
+      "segments": [
+        {
+          "type": "train",
+          "from": "Bordeaux",
+          "to": "Pau",
+          "time": "9h00 - 11h15",
+          "transport": "Peugeot e-208"
+        }
+      ],
+      "distance": "200 km",
+      "duree": "2h15",
+      "co2": "9,2 kg",
+      "xp": 45,
+      "status": true
+    }
+  ]
+}
