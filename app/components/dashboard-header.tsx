@@ -13,7 +13,7 @@ export function DashboardHeader() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-      <header className="sticky top-0 z-10 flex h-12 items-center gap-2 bg-primary min-h-4 px-2 md:px-4">
+      <header className="sticky top-0 z-10 py-4 flex items-center gap-2 bg-primary min-h-4 px-2 md:px-4">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="h-7 w-7 md:hidden">
@@ -27,20 +27,18 @@ export function DashboardHeader() {
         </Sheet>
         <div className="flex items-center gap-2">
           <Link href="/">
-            <img src="/placeholder.svg?height=24&width=24" alt="SNCF SmartMove Logo" className="h-6 w-6" />
+            <img src="/sncf.svg?height=24&width=24" alt="SNCF SmartMove Logo" className="h-12 object-contain" />
           </Link>
-          <Link href="/" className="font-bold text-xs hidden md:inline-block">
-            SNCF SmartMove
-          </Link>
+
         </div>
-        <div className="flex-1 md:grow-0 md:w-[180px] lg:w-[240px]">
+        <div className="mx-2 flex-1 md:grow-0 md:w-[180px] lg:w-[240px]">
           <form>
-            <div className="relative">
-              <Search className="absolute left-2 top-1.5 h-3.5 w-3.5 text-muted-foreground" />
+            <div className="flex justify-center relative">
+              <Search className="absolute my-auto left-2 top-4 h-3.5 w-3.5 text-muted-foreground" />
               <Input
                   type="search"
                   placeholder="Rechercher..."
-                  className="w-full rounded-md bg-background pl-7 md:w-[180px] lg:w-[240px] h-7 text-xs"
+                  className="w-full rounded-md bg-background pl-7 md:w-[180px] lg:w-[240px] h-12 text-xs"
               />
             </div>
           </form>
