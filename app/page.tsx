@@ -14,7 +14,7 @@ export default function Dashboard() {
   return (
       <div className="flex min-h-screen flex-col bg-gradient-to-br from-blue-50 to-green-50">
         <DashboardHeader />
-        <div className="flex flex-1">
+        <div className="flex flex-1 z-1000">
           <DashboardNav />
           <main className="p-6 md:p-8 bg-background flex-1">
             <div className="flex flex-col gap-8">

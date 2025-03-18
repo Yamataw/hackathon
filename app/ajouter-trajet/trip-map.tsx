@@ -7,21 +7,6 @@ import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
 import L from "leaflet"
 
-// Définir des icônes personnalisées pour les marqueurs
-const trainIcon = new L.Icon({
-  iconUrl: "/placeholder.svg?height=32&width=32",
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32],
-})
-
-const carIcon = new L.Icon({
-  iconUrl: "/placeholder.svg?height=32&width=32",
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32],
-})
-
 // Coordonnées factices pour les villes françaises
 const cityCoordinates: Record<string, [number, number]> = {
   Paris: [48.8566, 2.3522],
@@ -52,11 +37,9 @@ const generateRoute = (start: [number, number], end: [number, number], type: str
 
   // Pour les trajets en train, on fait une ligne plus directe
   if (type === "train") {
-    // Ajouter quelques points intermédiaires avec une légère courbure
     const midPoint = getIntermediatePoint(start, end, 0.5)
     const offset = type === "train" ? 0.05 : 0.15
 
-    // Ajouter un décalage perpendiculaire pour créer une courbe
     const dx = end[0] - start[0]
     const dy = end[1] - start[1]
     const perpX = -dy
@@ -72,18 +55,12 @@ const generateRoute = (start: [number, number], end: [number, number], type: str
     }
 
     route.push(midPoint)
-  }
-  // Pour les trajets en voiture, on fait une route plus sinueuse
-  else {
-    // Ajouter plus de points intermédiaires pour simuler une route
+  } else {
     for (let i = 1; i < 5; i++) {
       const ratio = i / 5
       const point = getIntermediatePoint(start, end, ratio)
-
-      // Ajouter un peu de variation aléatoire
       point[0] += (Math.random() - 0.5) * 0.05
       point[1] += (Math.random() - 0.5) * 0.05
-
       route.push(point)
     }
   }
@@ -105,60 +82,55 @@ interface TripMapProps {
 }
 
 export function TripMap({ segments }: TripMapProps) {
-
-  // Déterminer les coordonnées de départ et d'arrivée pour centrer la carte
   const allCities = segments.flatMap((segment) => [segment.from, segment.to])
   const validCities = allCities.filter((city) => city && cityCoordinates[city])
 
-  // Si aucune ville valide, utiliser Paris comme centre par défaut
   const defaultCenter: [number, number] =
-    validCities.length > 0 ? cityCoordinates[validCities[0]] : [46.603354, 1.888334] // Centre de la France
+      validCities.length > 0 ? cityCoordinates[validCities[0]] : [46.603354, 1.888334]
 
   return (
-    <MapContainer center={defaultCenter} zoom={5} style={{ height: "100%", width: "100%" }} scrollWheelZoom={false}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <MapContainer center={defaultCenter} zoom={5} style={{ height: "100%", width: "100%" }} scrollWheelZoom={false}>
+        <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
 
-      {segments.map((segment) => {
-        // Vérifier si les villes existent dans notre dictionnaire
-        if (!cityCoordinates[segment.from] || !cityCoordinates[segment.to]) {
-          return null
-        }
+        {segments.map((segment) => {
+          if (!cityCoordinates[segment.from] || !cityCoordinates[segment.to]) {
+            return null
+          }
 
-        const fromCoords = cityCoordinates[segment.from]
-        const toCoords = cityCoordinates[segment.to]
-        const route = generateRoute(fromCoords, toCoords, segment.type)
+          const fromCoords = cityCoordinates[segment.from]
+          const toCoords = cityCoordinates[segment.to]
+          const route = generateRoute(fromCoords, toCoords, segment.type)
 
-        return (
-          <div key={segment.id}>
-            <Marker position={fromCoords} icon={segment.type === "train" ? trainIcon : carIcon}>
-              <Popup>
-                <b>{segment.from}</b>
-                <br />
-                Départ: {segment.departTime}
-              </Popup>
-            </Marker>
+          return (
+              <div key={segment.id}>
+                <Marker position={fromCoords}>
+                  <Popup>
+                    <b>{segment.from}</b>
+                    <br />
+                    Départ: {segment.departTime}
+                  </Popup>
+                </Marker>
 
-            <Marker position={toCoords} icon={segment.type === "train" ? trainIcon : carIcon}>
-              <Popup>
-                <b>{segment.to}</b>
-                <br />
-                Arrivée: {segment.arriveTime}
-              </Popup>
-            </Marker>
+                <Marker position={toCoords}>
+                  <Popup>
+                    <b>{segment.to}</b>
+                    <br />
+                    Arrivée: {segment.arriveTime}
+                  </Popup>
+                </Marker>
 
-            <Polyline
-              positions={route}
-              color={segment.type === "train" ? "#3b82f6" : "#10b981"}
-              weight={4}
-              dashArray={segment.type === "train" ? "" : "5,10"}
-            />
-          </div>
-        )
-      })}
-    </MapContainer>
+                <Polyline
+                    positions={route}
+                    color={segment.type === "train" ? "#3b82f6" : "#10b981"}
+                    weight={4}
+                    dashArray={segment.type === "train" ? "" : "5,10"}
+                />
+              </div>
+          )
+        })}
+      </MapContainer>
   )
 }
-

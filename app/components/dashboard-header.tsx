@@ -13,7 +13,7 @@ export function DashboardHeader() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-      <header className="sticky top-0 z-10 py-4 flex items-center gap-2 bg-primary min-h-4 px-2 md:px-4">
+      <header className="sticky top-0 z-10 py-4 flex items-center gap-2 bg-primary min-h-4 px-2 md:px-4" style={{ zIndex: 100000 }}>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="h-7 w-7 md:hidden">
