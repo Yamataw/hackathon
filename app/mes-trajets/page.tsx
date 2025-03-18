@@ -1,68 +1,28 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { DashboardHeader } from "../components/dashboard-header"
-import { DashboardNav } from "../components/dashboard-nav"
-import { Calendar, Car, ChevronRight, Clock, MapPin, Train } from "lucide-react"
+"use client";
+
+import {Button} from "@/components/ui/button"
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
+import {DashboardHeader} from "../components/dashboard-header"
+import {DashboardNav} from "../components/dashboard-nav"
 import Link from "next/link"
+import {Trajet} from "../type/Trajet"
+import {useContext} from "react";
+import {TrajetContext} from "@/app/context/TrajetContext";
+import TrajetCard from "@/app/components/MesTrajet";
 
 export default function MesTrajets() {
-  const trajetsAVenir = [
-    {
-      id: 1,
-      nom: "Paris → Nantes → La Rochelle",
-      date: "Demain, 9h15",
-      segments: [
-        { type: "train", from: "Paris", to: "Nantes", time: "9h15 - 11h30", transport: "TGV INOUI" },
-        { type: "car", from: "Nantes", to: "La Rochelle", time: "12h00 - 13h30", transport: "Renault Zoé" },
-      ],
-      distance: "463 km",
-      duree: "4h15",
-      co2: "12,4 kg",
-      xp: 85,
-      status: "optimisé",
-    },
-    {
-      id: 2,
-      nom: "Bordeaux → Toulouse",
-      date: "Vendredi, 14h30",
-      segments: [{ type: "train", from: "Bordeaux", to: "Toulouse", time: "14h30 - 16h45", transport: "TGV OUIGO" }],
-      distance: "245 km",
-      duree: "2h15",
-      co2: "3,2 kg",
-      xp: 60,
-      status: "optimisé",
-    },
-  ]
+    const trajetContext = useContext(TrajetContext);
 
-  const trajetsPassés = [
-    {
-      id: 3,
-      nom: "Paris → Bordeaux",
-      date: "15 mars 2025",
-      segments: [{ type: "train", from: "Paris", to: "Bordeaux", time: "8h30 - 10h45", transport: "TGV INOUI" }],
-      distance: "583 km",
-      duree: "2h15",
-      co2: "5,8 kg",
-      xp: 70,
-      status: "complété",
-    },
-    {
-      id: 4,
-      nom: "Bordeaux → Toulouse → Pau",
-      date: "10 mars 2025",
-      segments: [
-        { type: "train", from: "Bordeaux", to: "Toulouse", time: "9h00 - 10h30", transport: "INTERCITÉS" },
-        { type: "car", from: "Toulouse", to: "Pau", time: "11h00 - 13h15", transport: "Peugeot e-208" },
-      ],
-      distance: "312 km",
-      duree: "4h15",
-      co2: "14,2 kg",
-      xp: 65,
-      status: "complété",
-    },
-  ]
+    if (!trajetContext) {
+        return <p>Chargement des trajets...</p>;
+    }
+
+    const {trajets} = trajetContext;
+
+    // Séparer trajets à venir et passés en fonction de leur date
+    const today = new Date();
+    const trajetsAVenir = trajets.filter((trajet: Trajet) => new Date(trajet.date) > today);
+    const trajetsPasses = trajets.filter((trajet: Trajet) => new Date(trajet.date) <= today);
 
   return (
       <div className="flex min-h-screen flex-col bg-gradient-to-br from-blue-50 to-green-50">
@@ -80,139 +40,34 @@ export default function MesTrajets() {
               </Button>
             </div>
 
-            <Tabs defaultValue="a-venir" className="space-y-6">
-              <TabsList>
-                <TabsTrigger value="a-venir">À Venir</TabsTrigger>
-                <TabsTrigger value="passes">Passés</TabsTrigger>
-              </TabsList>
+                    <Tabs defaultValue="a-venir" className="space-y-6">
+                        <TabsList>
+                            <TabsTrigger value="a-venir">À Venir</TabsTrigger>
+                            <TabsTrigger value="passes">Passés</TabsTrigger>
+                        </TabsList>
 
-              <TabsContent value="a-venir" className="space-y-6">
-                {trajetsAVenir.map((trajet) => (
-                    <Card key={trajet.id} className="overflow-hidden">
-                      <CardHeader className="pb-3">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <CardTitle>{trajet.nom}</CardTitle>
-                            <CardDescription className="flex items-center mt-1">
-                              <Calendar className="h-4 w-4 mr-1" />
-                              {trajet.date}
-                            </CardDescription>
-                          </div>
-                          <Badge variant="outline" className="bg-green-50">
-                            {trajet.status}
-                          </Badge>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="pb-3">
-                        <div className="space-y-4">
-                          {trajet.segments.map((segment, index) => (
-                              <div key={index} className="flex items-start">
-                                <div className="flex-shrink-0 mt-1">
-                                  {segment.type === "train" ? (
-                                      <Train className="h-5 w-5 text-blue-500" />
-                                  ) : (
-                                      <Car className="h-5 w-5 text-green-500" />
-                                  )}
-                                </div>
-                                <div className="ml-3 space-y-1">
-                                  <div className="font-medium">
-                                    {segment.from} → {segment.to}
-                                  </div>
-                                  <div className="text-sm text-muted-foreground flex items-center">
-                                    <Clock className="h-3 w-3 mr-1" />
-                                    {segment.time} • {segment.transport}
-                                  </div>
-                                </div>
-                              </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                      <CardFooter className="border-t pt-3 flex justify-between">
-                        <div className="flex space-x-4 text-sm">
-                          <div className="flex items-center">
-                            <MapPin className="h-4 w-4 mr-1 text-muted-foreground" />
-                            <span>{trajet.distance}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <Clock className="h-4 w-4 mr-1 text-muted-foreground" />
-                            <span>{trajet.duree}</span>
-                          </div>
-                          <div>CO₂: {trajet.co2}</div>
-                          <div className="font-medium text-blue-600">+{trajet.xp} XP</div>
-                        </div>
-                        <Button variant="ghost" size="sm" className="gap-1">
-                          Détails <ChevronRight className="h-4 w-4" />
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                ))}
-              </TabsContent>
+                        {/* 🔥 Trajets à venir */}
+                        <TabsContent value="a-venir" className="space-y-6">
+                            {
+                                trajetsAVenir.length > 0 ? (
+                                    trajetsAVenir.map((trajet) => <TrajetCard key={trajet.id} trajet={trajet}/>)
+                                ) : (
+                                    <p>Aucun trajet à venir.</p>
+                                )}
+                        </TabsContent>
 
-              <TabsContent value="passes" className="space-y-6">
-                {trajetsPassés.map((trajet) => (
-                    <Card key={trajet.id} className="overflow-hidden">
-                      <CardHeader className="pb-3">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <CardTitle>{trajet.nom}</CardTitle>
-                            <CardDescription className="flex items-center mt-1">
-                              <Calendar className="h-4 w-4 mr-1" />
-                              {trajet.date}
-                            </CardDescription>
-                          </div>
-                          <Badge variant="outline" className="bg-blue-50">
-                            {trajet.status}
-                          </Badge>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="pb-3">
-                        <div className="space-y-4">
-                          {trajet.segments.map((segment, index) => (
-                              <div key={index} className="flex items-start">
-                                <div className="flex-shrink-0 mt-1">
-                                  {segment.type === "train" ? (
-                                      <Train className="h-5 w-5 text-blue-500" />
-                                  ) : (
-                                      <Car className="h-5 w-5 text-green-500" />
-                                  )}
-                                </div>
-                                <div className="ml-3 space-y-1">
-                                  <div className="font-medium">
-                                    {segment.from} → {segment.to}
-                                  </div>
-                                  <div className="text-sm text-muted-foreground flex items-center">
-                                    <Clock className="h-3 w-3 mr-1" />
-                                    {segment.time} • {segment.transport}
-                                  </div>
-                                </div>
-                              </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                      <CardFooter className="border-t pt-3 flex justify-between">
-                        <div className="flex space-x-4 text-sm">
-                          <div className="flex items-center">
-                            <MapPin className="h-4 w-4 mr-1 text-muted-foreground" />
-                            <span>{trajet.distance}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <Clock className="h-4 w-4 mr-1 text-muted-foreground" />
-                            <span>{trajet.duree}</span>
-                          </div>
-                          <div>CO₂: {trajet.co2}</div>
-                          <div className="font-medium text-blue-600">+{trajet.xp} XP</div>
-                        </div>
-                        <Button variant="ghost" size="sm" className="gap-1">
-                          Détails <ChevronRight className="h-4 w-4" />
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                ))}
-              </TabsContent>
-            </Tabs>
-          </main>
+                        {/* 🔥 Trajets passés */}
+                        <TabsContent value="passes" className="space-y-6">
+                            {trajetsPasses.length > 0 ? (
+                                trajetsPasses.map((trajet) => <TrajetCard key={trajet.id} trajet={trajet}/>)
+                            ) : (
+                                <p>Aucun trajet passé.</p>
+                            )}
+                        </TabsContent>
+                    </Tabs>
+                </main>
+            </div>
         </div>
-      </div>
-  )
+    );
 }
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { Providers } from "./providers"; // 🔥 Import du provider
 
 export const metadata: Metadata = {
   title: 'SNCF SmartMoove',
@@ -13,7 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+      <Providers> {/* ✅ Maintenant, `TrajetProvider` entoure toute l'application */}
+          {children}
+      </Providers>
+      </body>
     </html>
   )
 }
